@@ -6,8 +6,17 @@
  * @copyright Copyright (c) 2005-2014 Zend Technologies USA Inc. (http://www.zend.com)
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
+namespace Application;
+use Application\Controller\IndexController;
+use Application\Controller\IndexControllerFactory;
+use Application\Form\FormWithTwoSelects;
 
 return array(
+    'form_elements' => [
+        'invokables' => [
+            FormWithTwoSelects::class => FormWithTwoSelects::class
+        ]
+    ],
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -15,7 +24,7 @@ return array(
                 'options' => array(
                     'route'    => '/',
                     'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
+                        'controller' => IndexController::class,
                         'action'     => 'index',
                     ),
                 ),
@@ -72,8 +81,8 @@ return array(
         ),
     ),
     'controllers' => array(
-        'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+        'factories' => array(
+            IndexController::class => IndexControllerFactory::class
         ),
     ),
     'view_manager' => array(
