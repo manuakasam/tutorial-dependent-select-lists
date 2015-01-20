@@ -10,6 +10,10 @@
         var deps   = child.children('option');
 
         parent.on('change', function(){
+            //always reset child when parent change
+            //it happen when submit button clicked first on first child change
+            child.prop('selectedIndex',0);
+
             var selectedKey = $(this).children(':selected').data('key');
 
             // Hide all Elements
